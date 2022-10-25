@@ -31,10 +31,17 @@ def multiply(number1, number2):
     return f"{number1} times {number2} is {number_answer}"
 
 @app.route("/sayntimes/<word>/<n>")
-def sayntimes(word, n):
+def say_n_times(word, n):
+    display = True
     """repeat a string a given number of times"""
-    if word == False or n == False:
-        return(word + " ") * int(n)
+    if word.isalpha() and n.isdigit(): # checks if words are letters and n are numbers
+        display = (word + " ") * int(n) + word
+    else:
+        word_response = "Invalid input. Please try again by entering a word and a number!"
+    return display
+    """ran pytest and got a valueError: invalid literal for int() with base 10:world
+       test_app.py:: test_sayntimes_invalid - assert 500 == 200"""
+    """tried to create a loop as per instructions of the assignment but got confused."""
 
 @app.route("/dicegame")
 def dicegame():
